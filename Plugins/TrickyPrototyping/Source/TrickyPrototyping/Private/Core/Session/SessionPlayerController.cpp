@@ -54,11 +54,14 @@ void ASessionPlayerController::OnSessionStateChanged(const ESessionState NewStat
 		bShowMouseCursor = bShowCursor;
 		SetInputMode(InputMode);
 	};
-	
+	FInputModeGameAndUI InputMode;
+	InputMode.SetHideCursorDuringCapture(false);
+	InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 	switch (NewState)
 	{
 	case ESessionState::Progress:
-		ToggleInput(true, bShowCursorOnStart, FInputModeGameOnly());
+
+		ToggleInput(true, bShowCursorOnStart, InputMode);
 		break;
 
 	case ESessionState::GameOver:

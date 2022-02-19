@@ -71,7 +71,7 @@ void ASessionPlayerController::OnSessionStateChanged(const ESessionState NewStat
 		break;
 
 	case ESessionState::Pause:
-		ToggleInput(false, true, FInputModeGameAndUI());
+		ToggleInput(true, true, FInputModeGameAndUI());
 		break;
 
 	default:

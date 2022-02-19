@@ -43,6 +43,8 @@ void ADoorBase::FinishAnimation_Implementation()
 {
 	Super::FinishAnimation_Implementation();
 
+	if (DoorType == EDoorType::Manual) return;
+
 	switch (GetStateCurrent())
 	{
 		case EAnimatedActorState::Opened:

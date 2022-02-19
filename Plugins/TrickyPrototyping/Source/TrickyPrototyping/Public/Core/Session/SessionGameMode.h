@@ -40,15 +40,19 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Session")
 	float GetSessionElapsedTime() const;
 
+	UPROPERTY(BlueprintAssignable)
 	FOnSessionStateChangedSignature OnSessionStateChanged;
 
 protected:
+	UPROPERTY(BlueprintReadOnly, Category="Session")
+	bool bIsWinning = true;
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Session", meta=(AllowPrivateAccess="true"))
 	ESessionState CurrentState = ESessionState::Inactive;
-	
+
 	ESessionState PreviousState;
-	
+
 	UPROPERTY(EditDefaultsOnly,
 		BlueprintReadOnly,
 		Category="Session",
@@ -61,6 +65,7 @@ private:
 
 	FTimerHandle SessionTimerHandle;
 
+
 	void SetSessionState(const ESessionState NewState);
 
 	UFUNCTION()
@@ -71,5 +76,11 @@ private:
 
 public:
 	UFUNCTION(BlueprintCallable, Category="Session")
-	void FinishSession();
+	void FinishSession(const bool bWin);
+
+	UFUNCTION(BlueprintCallable, Category="Session")
+	void WinGame() { FinishSession(true); }
+
+	UFUNCTION(BlueprintCallable, Category="Session")
+	void LoseGame() { FinishSession(false); }
 };

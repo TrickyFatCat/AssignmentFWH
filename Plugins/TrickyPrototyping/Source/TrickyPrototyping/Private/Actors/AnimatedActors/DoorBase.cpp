@@ -217,7 +217,7 @@ bool ADoorBase::IsClosingAutomatically() const
 
 void ADoorBase::StartAutoClose()
 {
-	if (!IsStateCurrent(EAnimatedActorState::Opened)) return;
+	if (!IsStateCurrent(EAnimatedActorState::Opened) || !IsClosingAutomatically()) return;
 
 	GetWorldTimerManager().SetTimer(AutoCloseDelayHandle, this, &ADoorBase::Close, AutoCloseDelay, false);
 }

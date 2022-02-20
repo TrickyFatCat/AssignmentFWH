@@ -16,6 +16,13 @@ UCLASS()
 class TRICKYPROTOTYPING_API ASessionHUD : public AHUD
 {
 	GENERATED_BODY()
+
+public:
+	UFUNCTION(BlueprintCallable, Category="UI")
+	void EnableHUD();
+	
+	UFUNCTION(BlueprintCallable, Category="UI")
+	void HideHUD();
 	
 protected:
 	virtual void BeginPlay() override;
